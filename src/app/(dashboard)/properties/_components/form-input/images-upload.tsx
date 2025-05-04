@@ -4,12 +4,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PropertyImage, PropertyImageTag } from "@/lib/enums/property-image";
 import { Button } from "@/components/ui/button";
-import { LuStar, LuTag, LuUpload } from "react-icons/lu";
+import { LuTag, LuUpload } from "react-icons/lu";
 import Image from "next/image";
 import { env } from "@/lib/env";
 import { useStore } from "../../_stores";
 import { useShallow } from "zustand/react/shallow";
 import { ImagesMenu } from "./images-menu";
+import { MdStar } from "react-icons/md";
 
 export const ImagesUpload = () => {
   const { images, setStore } = useStore(
@@ -85,7 +86,7 @@ export const ImagesUpload = () => {
     <div className="grid gap-2">
       <Label className="images">Upload Images (Min 3, Max 8)</Label>
       <span className="text-muted-foreground flex flex-wrap text-xs">
-        Cover image will have <LuStar />
+        Cover image will have <MdStar className="text-brand" />
       </span>
       <Button
         type="button"
@@ -115,7 +116,7 @@ export const ImagesUpload = () => {
           >
             {image.is_cover && (
               <span className="top-0 left-0 absolute w-6 h-6 flex items-center justify-center">
-                <LuStar />
+                <MdStar className="text-brand" />
               </span>
             )}
             <ImagesMenu

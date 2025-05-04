@@ -28,6 +28,7 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_HOST_URL: z.string().min(1),
+    NEXT_PUBLIC_CLIENT_URL: z.string().min(1),
     NEXT_PUBLIC_API_URL: z.string().min(1),
     NEXT_PUBLIC_S3_ENDPOINT: z.string().min(1),
     NEXT_PUBLIC_SENTRY_DSN: z.string(),
@@ -40,6 +41,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NEXT_PUBLIC_HOST_URL: process.env.NEXT_PUBLIC_HOST_URL,
+    NEXT_PUBLIC_CLIENT_URL: process.env.NEXT_PUBLIC_CLIENT_URL,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     SUPERTOKENS_CONNECTION_URI: process.env.SUPERTOKENS_CONNECTION_URI,
     SUPERTOKENS_API_KEY: process.env.SUPERTOKENS_API_KEY,

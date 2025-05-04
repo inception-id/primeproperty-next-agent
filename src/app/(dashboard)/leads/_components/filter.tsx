@@ -1,16 +1,14 @@
 "use client";
 import { buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { FindAgentsQuery } from "@/lib/api/agents/find-agents";
+import { FindLeadsQuery } from "@/lib/api/leads/find-leads";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useRef, ChangeEvent } from "react";
-import { LuCirclePlus, LuSearch } from "react-icons/lu";
-import { Tooltip } from "react-tooltip";
+import { LuSearch } from "react-icons/lu";
 
 type FilterProps = {
-  searchParams: FindAgentsQuery;
+  searchParams: FindLeadsQuery;
 };
 
 export const Filter = ({ searchParams }: FilterProps) => {
@@ -23,7 +21,11 @@ export const Filter = ({ searchParams }: FilterProps) => {
     }
 
     typingTimeoutRef.current = setTimeout(() => {
-      router.push(`/agents?name_or_email=${e.target.value}`);
+      let searchValue = e.target.value;
+      if (searchValue.startsWith("0")) {
+        searchValue = searchValue.replace("0", "");
+      }
+      router.replace(`/leads?search=${searchValue}`);
     }, 500);
   };
   return (
@@ -40,23 +42,13 @@ export const Filter = ({ searchParams }: FilterProps) => {
         <Input
           type="text"
           id="agent-search"
-          placeholder="Search name or email..."
+          placeholder="Search name or phone"
           className="rounded-l-none border-l-transparent focus-visible:ring-transparent w-full md:w-fit"
           onChange={onChange}
           ref={typingTimeoutRef}
-          defaultValue={searchParams?.name_or_email}
+          defaultValue={searchParams?.search}
         />
       </div>
-
-      <Link
-        href="/agents/new"
-        className={cn(buttonVariants({ size: "icon" }), "hidden md:flex")}
-        data-tooltip-id="add-new-agent"
-        data-tooltip-content="Add new agent"
-      >
-        <LuCirclePlus />
-      </Link>
-      <Tooltip id="add-new-agent" />
     </div>
   );
 };

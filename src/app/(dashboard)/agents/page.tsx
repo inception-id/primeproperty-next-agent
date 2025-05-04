@@ -9,7 +9,7 @@ type AgensPageProps = {
 const AgentsPage = ({ searchParams }: AgensPageProps) => {
   return (
     <div className="flex flex-col gap-4 p-4 h-full">
-      <Filter />
+      <Filter searchParams={searchParams} />
       <AgentsTable searchParams={searchParams} />
     </div>
   );
