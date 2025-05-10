@@ -14,3 +14,4 @@ export * from "./facilities-select";
 export * from "./images-upload";
 export * from "./location-input";
 export * from "./sold-status-select";
+export * from "./sold-channel-select";

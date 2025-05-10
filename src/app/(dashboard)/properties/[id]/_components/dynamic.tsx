@@ -41,5 +41,10 @@ export const DynamicProperty = ({ id }: DynamicPropertyProps) => {
     return <div>Property not found</div>;
   }
 
-  return <EditPropertyForm propertyWithAgent={property.data?.data} />;
+  return (
+    <EditPropertyForm
+      userRole={agent.data?.role}
+      propertyWithAgent={property.data?.data}
+    />
+  );
 };

@@ -54,6 +54,11 @@ export const getTableColumns = (
       accessorKey: "sold_status",
       cell: ({ row }) => {
         const status = row.original[0].sold_status;
+        const channel = row.original[0].sold_channel;
+        if (channel && AgentRole.Admin) {
+          return status + " - " + channel;
+        }
+
         return status;
       },
     },

@@ -10,6 +10,7 @@ import { ProvinceRegencySelect, ProvinceSelect } from "./form-input";
 import { useRouter } from "next/navigation";
 import { BpsDomain } from "@/lib/bps/find-bps-domain-province";
 import { useState } from "react";
+import { SoldFilter } from "./sold-filter";
 
 type PropertyFilterProps = {
   searchParams: FindPropertyQuery;
@@ -34,11 +35,18 @@ export const PropertyFilter = ({ searchParams }: PropertyFilterProps) => {
     router.replace(`/properties?${newParams.toString()}`);
   };
 
+  const onSoldStatusChange = (soldStatus: string) => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("sold_status", soldStatus);
+    newParams.set("page", "1");
+    router.replace(`/properties?${newParams.toString()}`);
+  };
+
   return (
     <div className="flex items-center justify-between gap-4">
       <div className="flex items-center gap-2">
         <SearchFilter searchParams={searchParams} />
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:grid grid-cols-3 gap-2">
           <ProvinceSelect
             isFilter
             onProvinceChange={onProvinceChange}
@@ -49,6 +57,10 @@ export const PropertyFilter = ({ searchParams }: PropertyFilterProps) => {
             provinceId={provinceId}
             onValueChange={onRegencyChange}
             defaultValue={searchParams.regency}
+          />
+          <SoldFilter
+            onValueChange={onSoldStatusChange}
+            defaultValue={searchParams.sold_status}
           />
         </div>
       </div>

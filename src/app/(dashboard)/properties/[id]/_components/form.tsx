@@ -10,6 +10,7 @@ import {
   LocationInput,
   PriceInput,
   PurchaseStatusSelect,
+  SoldChannelSelect,
   SoldStatusSelect,
   StreetInput,
   TitleInput,
@@ -32,12 +33,15 @@ import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
 import { uploadPropertyImages } from "@/lib/s3/upload-property-images";
 import { updateProperty } from "@/lib/api/properties/update-property";
+import { AgentRole } from "@/lib/api/agents/type";
 
 type EditPropertyFormProps = {
+  userRole?: AgentRole;
   propertyWithAgent: PropertyWithAgent;
 };
 
 export const EditPropertyForm = ({
+  userRole,
   propertyWithAgent,
 }: EditPropertyFormProps) => {
   const queryClient = useQueryClient();
@@ -145,6 +149,11 @@ export const EditPropertyForm = ({
                   propertyWithAgent[0].building_furniture_capacity ?? undefined
                 }
               />
+              {userRole === AgentRole.Admin && (
+                <SoldChannelSelect
+                  defaultValue={propertyWithAgent[0].sold_channel ?? undefined}
+                />
+              )}
             </div>
             <div className="grid gap-4">
               <Measurements propertyWithAgent={propertyWithAgent} />

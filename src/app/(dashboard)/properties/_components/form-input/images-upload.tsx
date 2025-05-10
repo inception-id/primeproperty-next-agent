@@ -118,7 +118,7 @@ export const ImagesUpload = () => {
             className="relative rounded overflow-hidden border w-full h-32"
           >
             {image.is_cover && (
-              <span className="top-0 left-0 absolute w-6 h-6 flex items-center justify-center bg-foreground rounded">
+              <span className="top-0 left-0 absolute w-6 h-6 flex items-center justify-center bg-background rounded">
                 <MdStar className="text-brand" />
               </span>
             )}
@@ -139,7 +139,7 @@ export const ImagesUpload = () => {
               height={100}
               className="w-full h-full rounded"
             />
-            <span className="absolute right-0 bottom-0 text-xs bg-foreground text-background px-2 py-1 rounded flex gap-1 items-center">
+            <span className="absolute right-0 bottom-0 text-xs bg-background text-foreground px-2 py-1 rounded flex gap-1 items-center">
               <LuTag />
               {image.indonesian_label ? image.indonesian_label : "Missing"}
             </span>

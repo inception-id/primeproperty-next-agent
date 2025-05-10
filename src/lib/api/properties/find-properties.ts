@@ -1,12 +1,14 @@
 import { fetchApi } from "../fetch-api";
 import { JsonFindApiResponse } from "../types/find-response";
-import { Property } from "./type";
+import { Property, SoldStatus } from "./type";
 
 export type FindPropertyQuery = {
   s?: string;
   province?: string;
   regency?: string;
   page?: string;
+  is_popular?: string;
+  sold_status?: SoldStatus;
 };
 
 export type PropertyWithAgent = [Property, string, string, string | null];
@@ -24,6 +26,15 @@ export const findProperties = async (query?: FindPropertyQuery) => {
   }
   if (query?.page) {
     path += `&page=${query.page}`;
+  }
+  if (query?.is_popular === "1") {
+    path += `&is_popular=true`;
+  }
+  if (
+    query?.sold_status === SoldStatus.Available ||
+    query?.sold_status === SoldStatus.Sold
+  ) {
+    path += `&sold_status=${query.sold_status}`;
   }
   return await fetchApi<JsonFindApiResponse<PropertyWithAgent>>(path);
 };

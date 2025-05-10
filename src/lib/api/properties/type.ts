@@ -11,6 +11,14 @@ export enum SoldStatus {
   Sold = "Sold",
 }
 
+export enum SoldChannel {
+  Web = "Web",
+  R123 = "R123",
+  Socmed = "Socmed",
+  Banner = "Banner",
+  Others = "Others",
+}
+
 export type Property = {
   id: number;
   user_id: string;
@@ -35,6 +43,10 @@ export type Property = {
   specifications: PropertySpecifications;
   facilities: TFacility[];
   is_deleted: boolean;
+  sold_channel: SoldChannel | null;
+  configurations: {
+    is_popular?: boolean;
+  };
 };
 
 export type PropertyMeasurements = {
