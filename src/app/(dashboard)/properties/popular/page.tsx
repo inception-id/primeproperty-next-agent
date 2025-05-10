@@ -1,6 +1,8 @@
 import { PropertiesTable } from "./_components";
 import { AddDialog } from "./_components/add-dialog";
 
+export const revalidate = 0;
+
 const PopularPropertiesPage = () => {
   return (
     <div className="p-4 flex flex-col gap-4">
