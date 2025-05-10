@@ -51,7 +51,7 @@ export const SidebarMenu = ({ onLinkClick }: SidebarMenuProps) => {
               href={menu.url}
               className={cn(
                 buttonVariants({
-                  variant: pathname.includes(menu.url) ? "default" : "ghost",
+                  variant: pathname === menu.url ? "default" : "ghost",
                   size: "icon",
                 }),
               )}
@@ -75,7 +75,7 @@ export const SidebarMenu = ({ onLinkClick }: SidebarMenuProps) => {
           onClick={onLinkClick}
           className={cn(
             buttonVariants({
-              variant: pathname.includes(menu.url) ? "default" : "ghost",
+              variant: pathname === menu.url ? "default" : "ghost",
               size: "icon",
             }),
             "w-full justify-start px-2",

@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope } from "next/font/google";
+import { PT_Sans } from "next/font/google";
 import Providers from "@/components/providers";
 import "./globals.css";
 
-const manrope = Manrope({ subsets: ["latin"] });
+const ptSans = PT_Sans({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Primepro Agent",
@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" suppressHydrationWarning>
-      <body className={manrope.className}>
+      <body className={ptSans.className}>
         <Providers>{children}</Providers>
       </body>
     </html>

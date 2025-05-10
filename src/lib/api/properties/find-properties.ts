@@ -27,7 +27,7 @@ export const findProperties = async (query?: FindPropertyQuery) => {
   if (query?.page) {
     path += `&page=${query.page}`;
   }
-  if (query?.is_popular === "1") {
+  if (query?.is_popular === "true") {
     path += `&is_popular=true`;
   }
   if (
