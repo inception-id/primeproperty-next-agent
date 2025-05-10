@@ -8,7 +8,9 @@ type TitleInputProps = {
 export const TitleInput = ({ defaultValue }: TitleInputProps) => {
   return (
     <div className="grid gap-2 w-full">
-      <Label htmlFor="title">Judul</Label>
+      <Label htmlFor="title">
+        Judul <span className="text-red-500">(*)</span>
+      </Label>
       <Input
         id="title"
         type="text"

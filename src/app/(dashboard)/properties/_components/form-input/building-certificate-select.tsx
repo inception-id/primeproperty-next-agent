@@ -17,7 +17,10 @@ export const BuildingCertificateSelect = ({
 }: BuildingCertificateSelectProps) => {
   return (
     <div className="grid gap-2">
-      <Label htmlFor="building_certificate">Sertifikat</Label>
+      <Label htmlFor="building_certificate">
+        Sertifikat
+        <span className="text-red-500 ml-1">(*)</span>
+      </Label>
       <Select name="building_certificate" defaultValue={defaultValue}>
         <SelectTrigger className="capitalize">
           <SelectValue placeholder="HGU/HGB" />

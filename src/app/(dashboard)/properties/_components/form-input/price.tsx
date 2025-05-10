@@ -13,6 +13,7 @@ export const PriceInput = ({ defaultValue }: PriceInputProps) => {
     <div className="grid gap-2 w-full ">
       <Label htmlFor="price" className="flex flex-wrap gap-1">
         Harga
+        <span className="text-red-500">(*)</span>
         {price > 0 && <span>(Rp. {price.toLocaleString("id-ID")})</span>}
       </Label>
       <Input

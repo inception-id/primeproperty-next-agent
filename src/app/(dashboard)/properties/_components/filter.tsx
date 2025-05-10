@@ -35,7 +35,7 @@ export const PropertyFilter = ({ searchParams }: PropertyFilterProps) => {
   };
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between gap-4">
       <div className="flex items-center gap-2">
         <SearchFilter searchParams={searchParams} />
         <div className="hidden md:flex items-center gap-2">
@@ -54,11 +54,15 @@ export const PropertyFilter = ({ searchParams }: PropertyFilterProps) => {
       </div>
       <Link
         href="/properties/new"
-        className={cn(buttonVariants({ size: "icon" }), "hidden md:flex")}
+        className={cn(buttonVariants({}))}
         data-tooltip-id="add-new-property"
         data-tooltip-content="Add new property"
       >
         <LuCirclePlus />
+        <div className="flex items-center gap-1">
+          <span className="hidden md:block">Add</span>
+          Property
+        </div>
       </Link>
       <Tooltip id="add-new-property" />
     </div>

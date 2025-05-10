@@ -27,7 +27,7 @@ export const Filter = ({ searchParams }: FilterProps) => {
     }, 500);
   };
   return (
-    <div className="w-full flex items-end justify-between">
+    <div className="w-full flex items-end justify-between gap-4">
       <div className="flex items-center w-full md:w-fit">
         <div
           className={cn(
@@ -50,11 +50,15 @@ export const Filter = ({ searchParams }: FilterProps) => {
 
       <Link
         href="/agents/new"
-        className={cn(buttonVariants({ size: "icon" }), "hidden md:flex")}
+        className={cn(buttonVariants({}))}
         data-tooltip-id="add-new-agent"
         data-tooltip-content="Add new agent"
       >
         <LuCirclePlus />
+        <div className="flex items-center gap-1">
+          <span className="hidden md:block">Add</span>
+          Agent
+        </div>
       </Link>
       <Tooltip id="add-new-agent" />
     </div>

@@ -17,7 +17,10 @@ export const BuildingConditionSelect = ({
 }: BuildingConditionSelectProps) => {
   return (
     <div className="grid gap-2">
-      <Label htmlFor="building_condition">Kondisi Properti</Label>
+      <Label htmlFor="building_condition">
+        Kondisi Properti
+        <span className="text-red-500 ml-1">(*)</span>
+      </Label>
       <Select name="building_condition" defaultValue={defaultValue}>
         <SelectTrigger className="capitalize">
           <SelectValue placeholder="Baru/Tua" />

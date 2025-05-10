@@ -36,7 +36,8 @@ export const ProvinceSelect = ({
   return (
     <div className="grid gap-2">
       <Label htmlFor="province" className={isFilter ? "hidden" : ""}>
-        Provinsi (SEO)
+        Provinsi
+        <span className="text-red-500 ml-1">(*SEO)</span>
       </Label>
       <Select
         name="province"

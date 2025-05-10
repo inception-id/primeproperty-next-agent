@@ -27,7 +27,8 @@ export const ProvinceRegencySelect = ({
   return (
     <div className="grid gap-2">
       <Label htmlFor="regency" className={isFilter ? "hidden" : ""}>
-        Kabupaten (SEO)
+        Kabupaten
+        <span className="text-red-500 ml-1">(*SEO)</span>
       </Label>
       <Select
         name="regency"

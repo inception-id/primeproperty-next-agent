@@ -84,7 +84,10 @@ export const ImagesUpload = () => {
 
   return (
     <div className="grid gap-2">
-      <Label className="images">Upload Images (Min 3, Max 8)</Label>
+      <Label className="images">
+        Upload Images (Min 3, Max 8)
+        <span className="text-red-500 ml-1">(*)</span>
+      </Label>
       <span className="text-muted-foreground flex flex-wrap text-xs">
         Cover image will have <MdStar className="text-brand" />
       </span>
@@ -115,7 +118,7 @@ export const ImagesUpload = () => {
             className="relative rounded overflow-hidden border w-full h-32"
           >
             {image.is_cover && (
-              <span className="top-0 left-0 absolute w-6 h-6 flex items-center justify-center">
+              <span className="top-0 left-0 absolute w-6 h-6 flex items-center justify-center bg-foreground rounded">
                 <MdStar className="text-brand" />
               </span>
             )}

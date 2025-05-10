@@ -27,7 +27,11 @@ export const HeaderSheet = () => {
       <SheetTrigger className={cn(iconClassname)} onClick={() => setOpen(true)}>
         <LuPanelRight className="size-6" />
       </SheetTrigger>
-      <SheetContent className="p-0 flex flex-col gap-2">
+      <SheetContent
+        className="p-0 flex flex-col gap-2"
+        onOverlayClick={() => setOpen(false)}
+        onEscapeKeyDown={() => setOpen(false)}
+      >
         <SheetHeader>
           <div className="flex items-center justify-between pl-3">
             <SheetTitle>

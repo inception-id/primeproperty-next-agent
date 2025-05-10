@@ -8,7 +8,9 @@ type DescriptionInputProps = {
 export const DescriptionInput = ({ defaultValue }: DescriptionInputProps) => {
   return (
     <div className="grid gap-2 w-full">
-      <Label htmlFor="description">Deskripsi</Label>
+      <Label htmlFor="description">
+        Deskripsi <span className="text-red-500">(*)</span>
+      </Label>
       <Textarea
         id="description"
         placeholder="Dijual rumah bertabur bintang beratapkan langit dan awan."

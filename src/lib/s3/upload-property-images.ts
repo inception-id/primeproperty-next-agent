@@ -27,7 +27,6 @@ export const uploadPropertyImages = async (
           });
 
           const upload = await s3client.send(command);
-          console.log(path);
           return {
             ...img,
             path: upload.ETag ? path : "",

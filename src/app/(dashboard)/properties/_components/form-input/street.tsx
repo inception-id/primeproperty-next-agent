@@ -39,7 +39,10 @@ export const StreetInput = ({ defaultValue }: StreetInputProps) => {
     <div className="relative" ref={refs.setReference} {...getReferenceProps()}>
       <div className="grid gap-2">
         <div>
-          <Label htmlFor="street">Nama Jalan (SEO)</Label>
+          <Label htmlFor="street">
+            Nama Jalan
+            <span className="text-red-500 ml-1">(*SEO)</span>
+          </Label>
           <div className="text-xs text-muted-foreground">
             (Nama jalannya saja: Cth Kemang, jangan tulis Jl. Kemang Raya)
           </div>

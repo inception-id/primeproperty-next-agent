@@ -17,7 +17,10 @@ export const PurchaseStatusSelect = ({
 }: PurchaseStatusSelectProps) => {
   return (
     <div className="grid gap-2">
-      <Label htmlFor="purchase_status">Jual/Sewa?</Label>
+      <Label htmlFor="purchase_status">
+        Jual/Sewa
+        <span className="text-red-500 ml-1">(*)</span>
+      </Label>
       <Select name="purchase_status" defaultValue={defaultValue}>
         <SelectTrigger className="capitalize">
           <SelectValue placeholder="Jual/Sewa" />

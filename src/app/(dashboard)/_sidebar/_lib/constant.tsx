@@ -1,23 +1,28 @@
-import { LuHandshake, LuHouse, LuUser, LuUsers } from "react-icons/lu";
+import { LuHandshake, LuHouse, LuStar, LuUser, LuUsers } from "react-icons/lu";
 
 export const ADMIN_SIDEBAR_MENU = [
   {
-    title: "Property",
+    title: "POPULAR",
+    url: "/properties/popular",
+    icon: <LuStar />,
+  },
+  {
+    title: "PROPERTY",
     url: "/properties",
     icon: <LuHouse />,
   },
   {
-    title: "Leads",
+    title: "LEADS",
     url: "/leads",
     icon: <LuHandshake />,
   },
   {
-    title: "Agents",
+    title: "AGENTS",
     url: "/agents",
     icon: <LuUsers />,
   },
   {
-    title: "Account",
+    title: "ACCOUNT",
     url: "/account",
     icon: <LuUser />,
   },
@@ -25,17 +30,17 @@ export const ADMIN_SIDEBAR_MENU = [
 
 export const AGENT_SIDEBAR_MENU = [
   {
-    title: "Property",
+    title: "PROPERTY",
     url: "/properties",
     icon: <LuHouse />,
   },
   {
-    title: "Leads",
+    title: "LEADS",
     url: "/leads",
     icon: <LuHandshake />,
   },
   {
-    title: "Account",
+    title: "ACCOUNT",
     url: "/account",
     icon: <LuUser />,
   },

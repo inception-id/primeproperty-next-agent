@@ -17,7 +17,10 @@ export const BuildingTypeSelect = ({
 }: BuildingTypeSelectProps) => {
   return (
     <div className="grid gap-2">
-      <Label htmlFor="building_type">Tipe Properti</Label>
+      <Label htmlFor="building_type">
+        Tipe Properti
+        <span className="text-red-500 ml-1">(*)</span>
+      </Label>
       <Select name="building_type" defaultValue={defaultValue}>
         <SelectTrigger className="capitalize">
           <SelectValue placeholder="Rumah/Apart" />

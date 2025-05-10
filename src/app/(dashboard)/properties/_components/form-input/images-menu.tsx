@@ -36,7 +36,7 @@ export const ImagesMenu = ({
         <DropdownMenuTrigger
           className={cn(
             buttonVariants({ variant: "ghost", size: "icon" }),
-            "w-6 h-6 rounded focus-visible:ring-transparent",
+            "w-6 h-6 rounded focus-visible:ring-transparent bg-foreground text-background",
           )}
         >
           <LuMenu />
