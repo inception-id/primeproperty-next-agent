@@ -1,13 +1,12 @@
-import { buttonVariants } from "@/components/ui/button";
 import { AgentRole } from "@/lib/api/agents/type";
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { formatDateToIndonesian } from "@/lib/date-time/format-date-to-indonesian";
 import { env } from "@/lib/env";
-import { cn } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
-import Link from "next/link";
-import { LuPencil, LuUserRound } from "react-icons/lu";
+import { LuUserRound } from "react-icons/lu";
+import { DeleteDialog } from "./delete-dialog";
+import { formatToCurrencyUnit } from "@/lib/format-to-currency-unit";
 
 export const getTableColumns = (
   role?: AgentRole,
@@ -26,7 +25,8 @@ export const getTableColumns = (
         <div className="flex flex-col">
           <p className="font-semibold">{row.original[0].title}</p>
           <p className="text-muted-foreground">
-            Rp {row.original[0].price.toLocaleString("id-ID")}
+            Rp {row.original[0].price.toLocaleString("id-ID")} (
+            {formatToCurrencyUnit(row.original[0].price)})
           </p>
         </div>
       ),
@@ -106,18 +106,7 @@ export const getTableColumns = (
     header: "",
     accessorKey: "action",
     cell: ({ row }) => {
-      return (
-        // <div className="flex flex-col gap-1 items-center md:flex-row">
-        //   <Link
-        //     href={`/properties/${row.original[0].id}`}
-        //     className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
-        //   >
-        //     <LuPencil />
-        //   </Link>
-        //
-        // </div>
-        <>hoi</>
-      );
+      return <DeleteDialog row={row} />;
     },
   });
 

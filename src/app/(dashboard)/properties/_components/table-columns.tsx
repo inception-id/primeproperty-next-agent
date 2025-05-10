@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LuPencil, LuUserRound } from "react-icons/lu";
 import { DeleteDialog } from "./delete-dialog";
+import { formatToCurrencyUnit } from "@/lib/format-to-currency-unit";
 
 export const getTableColumns = (
   role?: AgentRole,
@@ -27,7 +28,8 @@ export const getTableColumns = (
         <div className="flex flex-col">
           <p className="font-semibold">{row.original[0].title}</p>
           <p className="text-muted-foreground">
-            Rp {row.original[0].price.toLocaleString("id-ID")}
+            Rp {row.original[0].price.toLocaleString("id-ID")} (
+            {formatToCurrencyUnit(row.original[0].price)})
           </p>
         </div>
       ),
