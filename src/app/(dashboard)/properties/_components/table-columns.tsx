@@ -117,7 +117,7 @@ export const getTableColumns = (
           >
             <LuPencil />
           </Link>
-          <DeleteDialog property={row.original[0]} />
+          <DeleteDialog property={row.original[0]} role={role} />
         </div>
       );
     },
