@@ -31,7 +31,9 @@ export const ProvinceSelect = ({
       );
       onProvinceChange(selectedProvince);
     }
-  }, [defaultValue, data, onProvinceChange, isFilter]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue, data, isFilter]);
 
   return (
     <div className="grid gap-2">
