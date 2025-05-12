@@ -7,8 +7,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useProvince } from "@/hooks";
 import { BpsDomain } from "@/lib/bps/find-bps-domain-province";
+import { PROVINCES } from "@/lib/enums/provinces";
 import { useEffect } from "react";
 
 type ProvinceSelectProps = {
@@ -22,18 +22,16 @@ export const ProvinceSelect = ({
   isFilter,
   defaultValue,
 }: ProvinceSelectProps) => {
-  const { isLoading, data } = useProvince();
-
   useEffect(() => {
-    if (defaultValue && !isFilter) {
-      const selectedProvince = data?.find(
+    if (defaultValue) {
+      const selectedProvince = PROVINCES.find(
         (prov) => prov.domain_name.toLowerCase() === defaultValue,
       );
       onProvinceChange(selectedProvince);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [defaultValue, data, isFilter]);
+  }, [defaultValue]);
 
   return (
     <div className="grid gap-2">
@@ -45,7 +43,7 @@ export const ProvinceSelect = ({
         name="province"
         defaultValue={defaultValue}
         onValueChange={(val) => {
-          const selectedProvince = data?.find(
+          const selectedProvince = PROVINCES?.find(
             (prov) => prov.domain_name.toLowerCase() === val,
           );
           onProvinceChange(selectedProvince);
@@ -56,18 +54,14 @@ export const ProvinceSelect = ({
         </SelectTrigger>
         <SelectContent>
           {isFilter && <SelectItem value="-">Semua Provinsi</SelectItem>}
-          {isLoading ? (
-            <div>Loading...</div>
-          ) : (
-            data?.map((province, index) => (
-              <SelectItem
-                key={`${index}_${province.domain_id}`}
-                value={province.domain_name.toLowerCase()}
-              >
-                {province.domain_name}
-              </SelectItem>
-            ))
-          )}
+          {PROVINCES?.map((province, index) => (
+            <SelectItem
+              key={`${index}_${province.domain_id}`}
+              value={province.domain_name.toLowerCase()}
+            >
+              {province.domain_name}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
     </div>

@@ -50,7 +50,7 @@ export const ProvinceRegencySelect = ({
         <SelectContent>
           {isFilter && <SelectItem value="-">Semua Kabupaten</SelectItem>}
           {isLoading ? (
-            <div>Loading...</div>
+            <div className="text-sm p-2">Loading...</div>
           ) : (
             data?.map((regency, index) => (
               <SelectItem
