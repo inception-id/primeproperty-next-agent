@@ -18,12 +18,14 @@ export const PriceInput = ({ defaultValue }: PriceInputProps) => {
       </Label>
       <Input
         id="price"
-        type="number"
+        type="text"
         name="price"
         placeholder="Rp."
         required
-        min={0}
-        onChange={(e) => setPrice(Number(e.target.value))}
+        onChange={(e) => {
+          if (isNaN(+e.target.value)) return;
+          setPrice(Number(e.target.value));
+        }}
         value={price}
       />
     </div>

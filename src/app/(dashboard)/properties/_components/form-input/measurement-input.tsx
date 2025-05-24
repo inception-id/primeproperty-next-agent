@@ -20,11 +20,13 @@ export const MeasurementInput = ({
         {label} {unit && `(${unit})`}
       </Label>
       <Input
-        type="number"
+        type="text"
         id={props.id}
         name={props.name}
-        min={0}
-        onChange={(e) => setValue(Number(e.target.value))}
+        onChange={(e) => {
+          if (isNaN(+e.target.value)) return;
+          setValue(Number(e.target.value));
+        }}
         value={value}
       />
     </div>
