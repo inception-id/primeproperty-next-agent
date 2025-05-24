@@ -23,15 +23,10 @@ export const createResetPasswordTemplate = (resetPasswordLink: string) => {
         padding: 0.5rem;
       "
     >
-      <!-- TODO: Change link and image to Primepro -->
       <div
         style="
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 1rem 0;
+          max-width: 1024px;
+          margin: 0 auto;
         "
       >
         <a href="https://primeproindonesia.com" target="_blank">
@@ -42,17 +37,8 @@ export const createResetPasswordTemplate = (resetPasswordLink: string) => {
             alt="Primepro Logo"
           />
         </a>
-      </div>
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          max-width: 1024px;
-          margin: 0 auto;
-        "
-      >
         <h1 style="margin-bottom: 0">Reset Password</h1>
-        <p>
+        <p style="margin-bottom: 20px">
           Hi, we received a request to reset the password for your Primepro Agent
           account. Click the button below to create new password:
         </p>
@@ -63,17 +49,15 @@ export const createResetPasswordTemplate = (resetPasswordLink: string) => {
             background-color: #ffff00;
             color: #000000;
             text-decoration: none;
-            padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
+            padding: 10px 15px;
+            border-radius: 6px;
             font-size: 20px;
-            font-weight: 700;
             width: fit-content;
           "
         >
           Reset Password
         </a>
-        <p style="font-size: 14px">
+        <p style="font-size: 14px; margin-top: 20px">
           If the button doesn’t work, copy and paste this link into your browser:
           <br />
           <a href="${resetPasswordLink}" style="font-size: 14px"
