@@ -13,12 +13,6 @@ const LoginPage = () => {
           height={100}
         />
         <h1 className="text-xl font-bold">Welcome to PRIMEPRO INDONESIA</h1>
-        <div className="text-center text-sm">
-          Don&apos;t have an account?{" "}
-          <Link href="/be-an-agent" className="underline underline-offset-4">
-            Contact here
-          </Link>
-        </div>
       </div>
       <LoginForm />
 
