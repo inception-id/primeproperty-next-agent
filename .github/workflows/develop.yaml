@@ -1,4 +1,4 @@
-name: Pull Request Pipeline
+name: Develop Pipeline
 
 on:
   push:
@@ -25,6 +25,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/primeproperty-next-agent:develop
           build-args: |
             NEXT_PUBLIC_HOST_URL=${{ secrets.NEXT_PUBLIC_HOST_URL }}
+            NEXT_PUBLIC_CLIENT_URL=${{ secrets.NEXT_PUBLIC_CLIENT_URL }}
             NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}
             SUPERTOKENS_CONNECTION_URI=${{ secrets.SUPERTOKENS_CONNECTION_URI }}
             SUPERTOKENS_API_KEY=${{ secrets.SUPERTOKENS_API_KEY }}
