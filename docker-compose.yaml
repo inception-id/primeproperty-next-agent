@@ -8,7 +8,7 @@ services:
     ports:
       - 3000:3000
     networks:
-      - next_network
+      - next_agent_network
 networks:
-  next_network:
+  next_agent_network:
     driver: bridge
