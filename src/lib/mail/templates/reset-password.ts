@@ -34,9 +34,9 @@ export const createResetPasswordTemplate = (resetPasswordLink: string) => {
           padding: 1rem 0;
         "
       >
-        <a href="https://inception.id" target="_blank">
+        <a href="https://primeproindonesia.com" target="_blank">
           <img
-            src="https://inception.id/images/inception.png"
+            src="https://agent.primeproindonesia.com/images/primepro.png"
             width="100"
             height="100"
             alt="Primepro Logo"

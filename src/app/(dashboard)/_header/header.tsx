@@ -11,14 +11,17 @@ import { useAgentBySupertokensId } from "@/hooks";
 const MobileHeader = () => {
   return (
     <div className="flex items-center justify-between border-b md:hidden">
-      <Link href="/" className="w-10">
+      <Link href="/" className="flex items-center gap-2 pl-2">
         <Image
           src="/images/primepro.png"
-          alt="Primepro"
-          width={25}
-          height={25}
-          className="mx-auto"
+          alt="PrimePro Logo"
+          width={50}
+          height={50}
+          className="w-6 h-6"
         />
+        <div className="text-lg flex flex-wrap font-bold">
+          PRIMEPRO INDONESIA
+        </div>
       </Link>
       <HeaderSheet />
     </div>

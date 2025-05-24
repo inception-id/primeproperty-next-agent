@@ -22,15 +22,15 @@ export const Sidebar = () => {
   }
 
   return (
-    <div className="hidden md:flex flex-col h-full border-r gap-2">
-      <Link href="/" className="py-2 px-3 flex items-center gap-2">
+    <div className="hidden md:flex flex-col h-full border-r">
+      <Link href="/" className="p-4 flex items-center gap-2">
         <Image
           src="/images/primepro.png"
           alt="Primepro"
-          width={25}
-          height={25}
+          width={20}
+          height={20}
         />
-        <span className="text-xs">Primepro Indonesia</span>
+        <span className="text-xs font-bold">PRIMEPRO</span>
       </Link>
       <SidebarMenu />
       <SidebarFooter />
