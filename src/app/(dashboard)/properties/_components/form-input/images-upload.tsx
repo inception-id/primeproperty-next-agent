@@ -85,11 +85,11 @@ export const ImagesUpload = () => {
   return (
     <div className="grid gap-2">
       <Label className="images">
-        Upload Images (Min 3, Max 8)
+        Upload Gambar (Min 3, Max 8)
         <span className="text-red-500 ml-1">(*)</span>
       </Label>
       <span className="text-muted-foreground flex flex-wrap text-xs">
-        Cover image will have <MdStar className="text-brand" />
+        Cover image akan bertanda <MdStar className="text-yellow-500" />
       </span>
       <Button
         type="button"
@@ -99,7 +99,7 @@ export const ImagesUpload = () => {
         onClick={() => inputRef?.current?.click()}
       >
         <LuUpload />
-        {images.length === 8 ? "Disabled: 8 pictures reached" : "Upload"}
+        {images.length === 8 ? "Disabled: 8 pictures reached" : "Pilih file"}
       </Button>
       <Input
         type="file"
@@ -119,7 +119,7 @@ export const ImagesUpload = () => {
           >
             {image.is_cover && (
               <span className="top-0 left-0 absolute w-6 h-6 flex items-center justify-center bg-background rounded">
-                <MdStar className="text-brand" />
+                <MdStar className="text-yellow-500" />
               </span>
             )}
             <ImagesMenu

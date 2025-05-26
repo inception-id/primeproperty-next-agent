@@ -154,8 +154,14 @@ export const NewPropertyForm = () => {
           )}
           disabled={loadingText !== ""}
         >
-          {loadingText ? loadingText : "Create Property"}
+          {loadingText ? loadingText : "Buat Properti"}
         </Button>
+      </div>
+      <div className="ml-auto text-right">
+        <span className="text-red-500">*</span>
+        <span className="text-xs">
+          Harap menunggu hingga popup sukses keluar sebelum meninggalkan halaman
+        </span>
       </div>
     </form>
   );

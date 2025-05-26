@@ -7,6 +7,7 @@ const ptSans = PT_Sans({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Primepro Agent",
+  robots: "noindex, nofollow",
 };
 
 export const viewport: Viewport = {
