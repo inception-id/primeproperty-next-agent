@@ -90,13 +90,11 @@ export const NewPropertyForm = () => {
         return;
       }
 
-      uploadedImages.forEach((img) => {
-        if (img.object_url) URL.revokeObjectURL(img.object_url);
-      });
       queryClient.invalidateQueries({ queryKey: ["properties"] });
-      setStore("selectedFacilities", []);
-      setStore("images", []);
-      toast.success("Property created successfully");
+      toast.success("Property created successfully, refreshing...");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
       return;
     } catch (error) {
       console.error(error);
