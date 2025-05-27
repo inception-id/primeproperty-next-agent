@@ -10,7 +10,6 @@ type DynamicPropertyPageProps = {
 const DynamicPropertyPage = ({ params }: DynamicPropertyPageProps) => {
   if (!params.id) {
     redirect("/properties");
-    return;
   }
   return (
     <div className="p-4">

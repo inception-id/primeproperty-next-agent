@@ -2,7 +2,6 @@
 
 import { EditPropertyForm } from "./form";
 import { useAgentTokenData } from "@/hooks/agents/use-agent-token-data";
-import { AgentRole } from "@/lib/api/agents/type";
 import { useQuery } from "@tanstack/react-query";
 import { findPropertyById } from "@/lib/api/properties/find-property-by-id";
 import { useStore } from "../../_stores";
@@ -34,10 +33,7 @@ export const DynamicProperty = ({ id }: DynamicPropertyProps) => {
     return <div className="animate-bounce">Loading...</div>;
   }
 
-  if (
-    !property.data?.data ||
-    (!property.data?.data[0].is_deleted && agent.data?.role !== AgentRole.Admin)
-  ) {
+  if (!property.data?.data) {
     return <div>Property not found</div>;
   }
 
