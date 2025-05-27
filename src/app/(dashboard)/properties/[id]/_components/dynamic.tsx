@@ -33,7 +33,7 @@ export const DynamicProperty = ({ id }: DynamicPropertyProps) => {
     return <div className="animate-bounce">Loading...</div>;
   }
 
-  if (!property.data?.data) {
+  if (!property.data?.data || property.data?.data[0].is_deleted) {
     return <div>Property not found</div>;
   }
 
