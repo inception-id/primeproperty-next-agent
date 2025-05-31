@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { useOsmSearch } from "@/hooks/osm/use-osm-search";
 import { ChangeEvent, useRef, useState } from "react";
 import { useDismiss, useFloating, useInteractions } from "@floating-ui/react";
+import { FaStarOfLife } from "react-icons/fa";
 
 type StreetInputProps = {
   defaultValue?: string;
@@ -38,15 +39,10 @@ export const StreetInput = ({ defaultValue }: StreetInputProps) => {
   return (
     <div className="relative" ref={refs.setReference} {...getReferenceProps()}>
       <div className="grid gap-2">
-        <div>
-          <Label htmlFor="street">
-            Nama Jalan
-            <span className="text-red-500 ml-1">(*SEO)</span>
-          </Label>
-          <div className="text-xs text-muted-foreground">
-            (Nama jalannya saja: Cth Kemang, jangan tulis Jl. Kemang Raya)
-          </div>
-        </div>
+        <Label htmlFor="street" className="flex gap-1">
+          Nama Jalan
+          <FaStarOfLife size={6} className="text-red-500" />
+        </Label>
         <Input
           id="street"
           type="text"
@@ -56,6 +52,9 @@ export const StreetInput = ({ defaultValue }: StreetInputProps) => {
           onChange={onChange}
           defaultValue={defaultValue}
         />
+        <div className="text-xs md:text-[10px] text-muted-foreground">
+          Nama jalannya saja: Cth Kemang, jangan tulis Jl. Kemang Raya
+        </div>
       </div>
 
       {isTyping && data && data?.length > 0 && (

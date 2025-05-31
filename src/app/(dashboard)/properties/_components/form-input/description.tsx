@@ -1,5 +1,6 @@
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { FaStarOfLife } from "react-icons/fa";
 
 type DescriptionInputProps = {
   defaultValue?: string;
@@ -8,8 +9,9 @@ type DescriptionInputProps = {
 export const DescriptionInput = ({ defaultValue }: DescriptionInputProps) => {
   return (
     <div className="grid gap-2 w-full">
-      <Label htmlFor="description">
-        Deskripsi <span className="text-red-500">(*)</span>
+      <Label htmlFor="description" className="flex gap-1">
+        Deskripsi
+        <FaStarOfLife size={6} className="text-red-500" />
       </Label>
       <Textarea
         id="description"

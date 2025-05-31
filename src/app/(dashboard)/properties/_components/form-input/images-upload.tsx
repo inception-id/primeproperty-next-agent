@@ -11,6 +11,7 @@ import { useStore } from "../../_stores";
 import { useShallow } from "zustand/react/shallow";
 import { ImagesMenu } from "./images-menu";
 import { MdStar } from "react-icons/md";
+import { FaStarOfLife } from "react-icons/fa";
 
 export const ImagesUpload = () => {
   const { images, setStore } = useStore(
@@ -83,68 +84,71 @@ export const ImagesUpload = () => {
   };
 
   return (
-    <div className="grid gap-2">
-      <Label className="images">
-        Upload Gambar (Min 3, Max 8)
-        <span className="text-red-500 ml-1">(*)</span>
-      </Label>
-      <span className="text-muted-foreground flex flex-wrap text-xs">
-        Cover image akan bertanda <MdStar className="text-yellow-500" />
-      </span>
-      <Button
-        type="button"
-        size="sm"
-        disabled={images.length === 8}
-        className="w-fit"
-        onClick={() => inputRef?.current?.click()}
-      >
-        <LuUpload />
-        {images.length === 8 ? "Disabled: 8 pictures reached" : "Pilih file"}
-      </Button>
-      <Input
-        type="file"
-        multiple
-        name="images"
-        id="images"
-        accept="image/*"
-        className="hidden"
-        ref={inputRef}
-        onChange={handleAdditionalImagesChange}
-      />
-      <div className="grid grid-cols-2 md:grid-flow-col gap-2">
-        {images.map((image, index) => (
-          <div
-            key={`image-${index}`}
-            className="relative rounded overflow-hidden border w-full h-32"
-          >
-            {image.is_cover && (
-              <span className="top-0 left-0 absolute w-6 h-6 flex items-center justify-center bg-background rounded">
-                <MdStar className="text-yellow-500" />
+    <div className="grid gap-4 md:flex md:flex-col">
+      <h3 className="text-lg">PROPERTY IMAGES</h3>
+      <div className="grid gap-2 md:flex md:flex-col">
+        <Label className="images flex gap-1">
+          Upload Gambar (Min 3, Max 8)
+          <FaStarOfLife size={6} className="text-red-500" />
+        </Label>
+        <span className="text-muted-foreground flex flex-wrap text-xs">
+          Cover image akan bertanda <MdStar className="text-yellow-500" />
+        </span>
+        <Button
+          type="button"
+          size="sm"
+          disabled={images.length === 8}
+          className="w-fit"
+          onClick={() => inputRef?.current?.click()}
+        >
+          <LuUpload />
+          {images.length === 8 ? "Disabled: 8 pictures reached" : "Pilih file"}
+        </Button>
+        <Input
+          type="file"
+          multiple
+          name="images"
+          id="images"
+          accept="image/*"
+          className="hidden"
+          ref={inputRef}
+          onChange={handleAdditionalImagesChange}
+        />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+          {images.map((image, index) => (
+            <div
+              key={`image-${index}`}
+              className="relative rounded overflow-hidden border w-full h-32"
+            >
+              {image.is_cover && (
+                <span className="top-0 left-0 absolute w-6 h-6 flex items-center justify-center bg-background rounded">
+                  <MdStar className="text-yellow-500" />
+                </span>
+              )}
+              <ImagesMenu
+                propertyImage={image}
+                onSetAsCoverClick={() => handleSetAsCoverClick(index, image)}
+                onDeleteClick={() => onDeleteClick(index)}
+                onTagClick={(tag) => onTagClick(index, tag)}
+              />
+              <Image
+                src={
+                  image.object_url
+                    ? image.object_url
+                    : `${env.NEXT_PUBLIC_S3_ENDPOINT}${image.path}`
+                }
+                alt={image.english_label}
+                width={100}
+                height={100}
+                className="w-full h-full rounded"
+              />
+              <span className="absolute right-0 bottom-0 text-xs bg-background text-foreground px-2 py-1 rounded flex gap-1 items-center">
+                <LuTag />
+                {image.indonesian_label ? image.indonesian_label : "Missing"}
               </span>
-            )}
-            <ImagesMenu
-              propertyImage={image}
-              onSetAsCoverClick={() => handleSetAsCoverClick(index, image)}
-              onDeleteClick={() => onDeleteClick(index)}
-              onTagClick={(tag) => onTagClick(index, tag)}
-            />
-            <Image
-              src={
-                image.object_url
-                  ? image.object_url
-                  : `${env.NEXT_PUBLIC_S3_ENDPOINT}${image.path}`
-              }
-              alt={image.english_label}
-              width={100}
-              height={100}
-              className="w-full h-full rounded"
-            />
-            <span className="absolute right-0 bottom-0 text-xs bg-background text-foreground px-2 py-1 rounded flex gap-1 items-center">
-              <LuTag />
-              {image.indonesian_label ? image.indonesian_label : "Missing"}
-            </span>
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

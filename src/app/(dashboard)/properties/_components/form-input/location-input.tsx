@@ -14,7 +14,7 @@ export const LocationInput = ({
   const [provinceId, setProvinceId] = useState<string>("");
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-4 md:col-span-2">
       <ProvinceSelect
         defaultValue={defaultProvinceValue}
         onProvinceChange={(bpsDomain) =>

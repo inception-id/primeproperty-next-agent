@@ -1,5 +1,5 @@
 import { CreateUpdatePropertyPayload } from "@/lib/api/properties/create-property";
-import { SoldChannel } from "@/lib/api/properties/type";
+import { CurrencyUnit, SoldChannel } from "@/lib/api/properties/type";
 import { TFacility } from "@/lib/enums/facilities";
 import { PropertyImage } from "@/lib/enums/property-image";
 
@@ -25,6 +25,8 @@ export type PropertyFormData = {
   garage: string;
   carport: string;
   sold_channel?: string;
+  currency: CurrencyUnit;
+  rent_time?: string;
 };
 
 export const converPropertyFormDataToApiData = (
@@ -61,5 +63,6 @@ export const converPropertyFormDataToApiData = (
     sold_channel: formData.sold_channel
       ? (formData.sold_channel as SoldChannel)
       : undefined,
+    rent_time: formData.rent_time ? formData.rent_time : undefined,
   };
 };

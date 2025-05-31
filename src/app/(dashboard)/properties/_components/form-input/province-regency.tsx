@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/select";
 import { useProvinceRegency } from "@/hooks/bps/use-province-regency";
 import { BpsDomain } from "@/lib/bps/find-bps-domain-province";
+import { FaStarOfLife } from "react-icons/fa";
 
 type ProvinceRegencyProps = {
   provinceId: string;
@@ -25,10 +26,10 @@ export const ProvinceRegencySelect = ({
   const { isLoading, data } = useProvinceRegency(provinceId);
 
   return (
-    <div className="grid gap-2">
-      <Label htmlFor="regency" className={isFilter ? "hidden" : ""}>
+    <div className="grid gap-2 md:flex md:flex-col">
+      <Label htmlFor="regency" className={isFilter ? "hidden" : "flex gap-1"}>
         Kabupaten
-        <span className="text-red-500 ml-1">(*SEO)</span>
+        <FaStarOfLife size={6} className="text-red-500" />
       </Label>
       <Select
         name="regency"

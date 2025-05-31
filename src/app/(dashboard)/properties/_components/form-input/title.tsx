@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { FaStarOfLife } from "react-icons/fa";
 
 type TitleInputProps = {
   defaultValue?: string;
@@ -8,8 +9,9 @@ type TitleInputProps = {
 export const TitleInput = ({ defaultValue }: TitleInputProps) => {
   return (
     <div className="grid gap-2 w-full">
-      <Label htmlFor="title">
-        Judul <span className="text-red-500">(*)</span>
+      <Label htmlFor="title" className="flex gap-1">
+        Judul
+        <FaStarOfLife size={6} className="text-red-500" />
       </Label>
       <Input
         id="title"

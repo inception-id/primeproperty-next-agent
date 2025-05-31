@@ -2,6 +2,7 @@ import { TFacility } from "@/lib/enums/facilities";
 import { fetchApi } from "../fetch-api";
 import { PropertyImage } from "@/lib/enums/property-image";
 import {
+  CurrencyUnit,
   Property,
   PropertyMeasurements,
   PropertySpecifications,
@@ -27,6 +28,8 @@ export type CreateUpdatePropertyPayload = {
   specifications: PropertySpecifications;
   facilities: TFacility[];
   sold_channel?: SoldChannel;
+  currency: CurrencyUnit;
+  rent_time?: string;
 };
 
 export const createProperty = async (payload: CreateUpdatePropertyPayload) => {

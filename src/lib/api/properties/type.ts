@@ -19,6 +19,16 @@ export enum SoldChannel {
   Others = "Others",
 }
 
+export enum CurrencyUnit {
+  IDR = "Idr",
+  USD = "Usd",
+}
+
+export enum RentTimeUnit {
+  Monthly = "Monthly",
+  Yearly = "Yearly",
+}
+
 export type Property = {
   id: number;
   user_id: string;
@@ -47,6 +57,8 @@ export type Property = {
   configurations: {
     is_popular?: boolean;
   };
+  currency: CurrencyUnit;
+  rent_time?: RentTimeUnit;
 };
 
 export type PropertyMeasurements = {

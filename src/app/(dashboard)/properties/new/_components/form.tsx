@@ -12,11 +12,11 @@ import {
   BuildingCertificateSelect,
   FacilitiesSelect,
   ImagesUpload,
+  CurrencySelect,
 } from "../../_components";
 import { GmapIframeInput } from "../../_components/form-input/gmap_iframe_input";
 import { LocationInput } from "../../_components/form-input/location-input";
 import { Measurements } from "../../_components/form-input/measurements";
-import { Specifications } from "../../_components/form-input/specifications";
 import Link from "next/link";
 import { LuChevronLeft } from "react-icons/lu";
 import { cn } from "@/lib/utils";
@@ -31,6 +31,56 @@ import { toast } from "react-toastify";
 import { createProperty } from "@/lib/api/properties/create-property";
 import { uploadPropertyImages } from "@/lib/s3/upload-property-images";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { RentTimeSelect } from "../../_components/form-input/rent-time-select";
+import { useState } from "react";
+import { PurchaseStatus } from "@/lib/enums/purchase-status";
+import { CurrencyUnit } from "@/lib/api/properties/type";
+
+const SeoForm = () => {
+  return (
+    <div className="grid gap-4">
+      <h3 className="text-lg">SEO</h3>
+      <TitleInput />
+      <DescriptionInput />
+      <div className="grid md:grid-cols-3 gap-4">
+        <LocationInput />
+        <StreetInput />
+      </div>
+    </div>
+  );
+};
+
+const PriceForm = () => {
+  const [isRent, setIsRent] = useState(false);
+  const [currency, setCurrency] = useState(CurrencyUnit.IDR);
+  return (
+    <div className="grid gap-4 md:flex md:flex-col">
+      <h3 className="text-lg">PRICE</h3>
+      <div className="grid grid-cols-2 gap-4">
+        <PurchaseStatusSelect
+          onValueChange={(val) => setIsRent(val !== PurchaseStatus.ForSale)}
+        />
+        <RentTimeSelect disabled={!isRent} />
+        <PriceInput currency={currency} />
+        <CurrencySelect onValueChange={setCurrency} />
+      </div>
+    </div>
+  );
+};
+
+const DetailForm = () => {
+  return (
+    <div className="grid gap-4 md:flex md:flex-col">
+      <h3 className="text-lg">PROPERTY DETAILS</h3>
+      <div className="grid grid-cols-2 gap-4">
+        <BuildingTypeSelect />
+        <BuildingConditionSelect />
+        <BuildingCertificateSelect />
+        <BuildingFurnitureSelect />
+      </div>
+    </div>
+  );
+};
 
 export const NewPropertyForm = () => {
   const queryClient = useQueryClient();
@@ -105,35 +155,23 @@ export const NewPropertyForm = () => {
   };
 
   return (
-    <form className="grid gap-2 max-w-7xl" action={handleAction}>
-      <div className="grid gap-4 md:flex md:gap-8 md:items-start">
-        <div className="grid gap-4 md:max-w-sm">
-          <TitleInput />
-          <DescriptionInput />
-          <div className="grid gap-4">
-            <LocationInput />
-            <StreetInput />
-          </div>
-          <GmapIframeInput />
+    <form
+      className="container mx-auto grid gap-4 md:gap-8"
+      action={handleAction}
+    >
+      <div className="grid gap-8 md:grid-cols-2">
+        <SeoForm />
+        <PriceForm />
+        <Measurements />
+        <DetailForm />
+        <div className="md:order-last">
+          <ImagesUpload />
         </div>
-        <div className="grid gap-2">
-          <div className="grid gap-4 md:gap-8">
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-              <PurchaseStatusSelect />
-              <BuildingCertificateSelect />
-              <PriceInput />
-              <BuildingTypeSelect />
-              <BuildingConditionSelect />
-              <BuildingFurnitureSelect />
-            </div>
-            <div className="grid gap-4">
-              <Measurements />
-              <Specifications />
-            </div>
-            <div className="grid gap-4">
-              <FacilitiesSelect />
-              <ImagesUpload />
-            </div>
+        <div className="grid gap-4">
+          <h3 className="text-lg">ADDITIONAL DETAILS</h3>
+          <div className="grid gap-4">
+            <FacilitiesSelect />
+            <GmapIframeInput />
           </div>
         </div>
       </div>

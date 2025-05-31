@@ -10,6 +10,7 @@ import {
 import { BpsDomain } from "@/lib/bps/find-bps-domain-province";
 import { PROVINCES } from "@/lib/enums/provinces";
 import { useEffect } from "react";
+import { FaStarOfLife } from "react-icons/fa";
 
 type ProvinceSelectProps = {
   isFilter?: boolean;
@@ -34,10 +35,10 @@ export const ProvinceSelect = ({
   }, [defaultValue]);
 
   return (
-    <div className="grid gap-2">
-      <Label htmlFor="province" className={isFilter ? "hidden" : ""}>
+    <div className="grid gap-2 md:flex md:flex-col">
+      <Label htmlFor="province" className={isFilter ? "hidden" : "flex gap-1"}>
         Provinsi
-        <span className="text-red-500 ml-1">(*SEO)</span>
+        <FaStarOfLife size={6} className="text-red-500" />
       </Label>
       <Select
         name="province"
