@@ -15,9 +15,4 @@ export const PURCHASE_STATUS = [
     indonesian_label: "disewa",
     english_label: "For Rent",
   },
-  {
-    value: PurchaseStatus.ForSaleOrRent,
-    indonesian_label: "dijual atau disewa",
-    english_label: "For Sale or Rent",
-  },
 ];

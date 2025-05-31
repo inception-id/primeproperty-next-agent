@@ -58,7 +58,7 @@ const PriceForm = () => {
       <h3 className="text-lg">PRICE</h3>
       <div className="grid grid-cols-2 gap-4">
         <PurchaseStatusSelect
-          onValueChange={(val) => setIsRent(val !== PurchaseStatus.ForSale)}
+          onValueChange={(val) => setIsRent(val === PurchaseStatus.ForRent)}
         />
         <RentTimeSelect disabled={!isRent} />
         <PriceInput currency={currency} />

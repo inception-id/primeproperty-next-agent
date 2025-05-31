@@ -20,14 +20,15 @@ export const RentTimeSelect = ({
   return (
     <div className="grid gap-2">
       <Label htmlFor="rent_time">Waktu Sewa</Label>
-      <Select name="rent_time" disabled={disabled} defaultValue={defaultValue}>
+      <Select
+        name="rent_time"
+        disabled={disabled}
+        defaultValue={defaultValue ?? RentTimeUnit.Monthly}
+      >
         <SelectTrigger>
-          <SelectValue placeholder={disabled ? "-" : "Pilih waktu Sewa"} />
+          <SelectValue placeholder="Pilih waktu Sewa" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="-" className="capitalize">
-            -
-          </SelectItem>
           <SelectItem value={RentTimeUnit.Monthly} className="capitalize">
             per Bulan
           </SelectItem>

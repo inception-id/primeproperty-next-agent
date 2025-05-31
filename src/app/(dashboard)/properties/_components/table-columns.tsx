@@ -10,6 +10,8 @@ import Link from "next/link";
 import { LuPencil, LuUserRound } from "react-icons/lu";
 import { DeleteDialog } from "./delete-dialog";
 import { formatToCurrencyUnit } from "@/lib/format-to-currency-unit";
+import { PurchaseStatus } from "@/lib/enums/purchase-status";
+import { RENT_TIME } from "@/lib/enums/rent-time";
 
 export const getTableColumns = (
   role?: AgentRole,
@@ -28,8 +30,13 @@ export const getTableColumns = (
         <div className="flex flex-col">
           <p className="font-semibold">{row.original[0].title}</p>
           <p className="text-muted-foreground">
-            Rp {row.original[0].price.toLocaleString("id-ID")} (
-            {formatToCurrencyUnit(row.original[0].price)})
+            {formatToCurrencyUnit(
+              row.original[0].price,
+              row.original[0].currency,
+            )}{" "}
+            {row.original[0].purchase_status === PurchaseStatus.ForRent &&
+              row.original[0].rent_time &&
+              RENT_TIME[row.original[0].rent_time]}
           </p>
         </div>
       ),

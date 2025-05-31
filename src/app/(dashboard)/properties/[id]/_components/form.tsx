@@ -63,7 +63,7 @@ const SeoForm = ({ propertyWithAgent }: EditPropertyFormProps) => {
 
 const PriceForm = ({ propertyWithAgent }: EditPropertyFormProps) => {
   const [isRent, setIsRent] = useState(
-    propertyWithAgent[0].purchase_status !== PurchaseStatus.ForSale,
+    propertyWithAgent[0].purchase_status === PurchaseStatus.ForRent,
   );
   const [currency, setCurrency] = useState(CurrencyUnit.IDR);
   return (
@@ -72,7 +72,7 @@ const PriceForm = ({ propertyWithAgent }: EditPropertyFormProps) => {
       <div className="grid grid-cols-2 gap-4">
         <PurchaseStatusSelect
           defaultValue={propertyWithAgent[0].purchase_status}
-          onValueChange={(val) => setIsRent(val !== PurchaseStatus.ForSale)}
+          onValueChange={(val) => setIsRent(val === PurchaseStatus.ForRent)}
         />
         <RentTimeSelect
           disabled={!isRent}
