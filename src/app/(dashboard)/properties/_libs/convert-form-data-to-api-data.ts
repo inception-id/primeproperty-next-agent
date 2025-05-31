@@ -60,9 +60,15 @@ export const converPropertyFormDataToApiData = (
     },
     facilities,
     images,
-    sold_channel: formData.sold_channel
-      ? (formData.sold_channel as SoldChannel)
-      : undefined,
-    rent_time: formData.rent_time ? formData.rent_time : undefined,
+    sold_channel:
+      formData.sold_channel && formData.sold_channel === "-"
+        ? null
+        : formData.sold_channel
+          ? (formData.sold_channel as SoldChannel)
+          : undefined,
+    rent_time:
+      formData.rent_time && formData.rent_time !== "-"
+        ? formData.rent_time
+        : undefined,
   };
 };

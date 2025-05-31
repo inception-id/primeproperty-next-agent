@@ -27,9 +27,9 @@ export type CreateUpdatePropertyPayload = {
   building_certificate: string;
   specifications: PropertySpecifications;
   facilities: TFacility[];
-  sold_channel?: SoldChannel;
+  sold_channel?: SoldChannel | null;
   currency: CurrencyUnit;
-  rent_time?: string;
+  rent_time?: string | null;
 };
 
 export const createProperty = async (payload: CreateUpdatePropertyPayload) => {

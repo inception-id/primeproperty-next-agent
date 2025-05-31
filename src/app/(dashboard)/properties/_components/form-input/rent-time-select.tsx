@@ -25,6 +25,9 @@ export const RentTimeSelect = ({
           <SelectValue placeholder={disabled ? "-" : "Pilih waktu Sewa"} />
         </SelectTrigger>
         <SelectContent>
+          <SelectItem value="-" className="capitalize">
+            -
+          </SelectItem>
           <SelectItem value={RentTimeUnit.Monthly} className="capitalize">
             per Bulan
           </SelectItem>

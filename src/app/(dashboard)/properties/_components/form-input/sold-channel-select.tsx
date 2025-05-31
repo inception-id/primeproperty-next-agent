@@ -18,9 +18,10 @@ export const SoldChannelSelect = ({ defaultValue }: SoldChannelSelectProps) => {
       <Label htmlFor="sold_channel">Sold Channel</Label>
       <Select name="sold_channel" defaultValue={defaultValue}>
         <SelectTrigger className="capitalize">
-          <SelectValue placeholder="Web/Socmed/Banner" />
+          <SelectValue placeholder="-" />
         </SelectTrigger>
         <SelectContent>
+          <SelectItem value="-"> -</SelectItem>
           <SelectItem value={SoldChannel.Web}>{SoldChannel.Web}</SelectItem>
           <SelectItem value={SoldChannel.R123}>{SoldChannel.R123}</SelectItem>
           <SelectItem value={SoldChannel.Socmed}>

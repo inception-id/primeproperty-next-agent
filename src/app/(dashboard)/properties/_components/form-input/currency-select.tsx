@@ -7,7 +7,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CurrencyUnit } from "@/lib/api/properties/type";
-import { FaStarOfLife } from "react-icons/fa";
 
 type CurrencySelectProps = {
   defaultValue?: string;

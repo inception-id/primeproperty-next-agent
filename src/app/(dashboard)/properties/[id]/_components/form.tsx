@@ -4,6 +4,7 @@ import {
   BuildingConditionSelect,
   BuildingFurnitureSelect,
   BuildingTypeSelect,
+  CurrencySelect,
   DescriptionInput,
   FacilitiesSelect,
   ImagesUpload,
@@ -17,7 +18,6 @@ import {
 } from "../../_components";
 import { GmapIframeInput } from "../../_components/form-input/gmap_iframe_input";
 import { Measurements } from "../../_components/form-input/measurements";
-import { Specifications } from "../../_components/form-input/specifications";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -34,10 +34,89 @@ import { useQueryClient } from "@tanstack/react-query";
 import { uploadPropertyImages } from "@/lib/s3/upload-property-images";
 import { updateProperty } from "@/lib/api/properties/update-property";
 import { AgentRole } from "@/lib/api/agents/type";
+import { useState } from "react";
+import { CurrencyUnit } from "@/lib/api/properties/type";
+import { PurchaseStatus } from "@/lib/enums/purchase-status";
+import { RentTimeSelect } from "../../_components/form-input/rent-time-select";
 
 type EditPropertyFormProps = {
   userRole?: AgentRole;
   propertyWithAgent: PropertyWithAgent;
+};
+
+const SeoForm = ({ propertyWithAgent }: EditPropertyFormProps) => {
+  return (
+    <div className="grid gap-4">
+      <h3 className="text-lg">SEO</h3>
+      <TitleInput defaultValue={propertyWithAgent[0].title} />
+      <DescriptionInput defaultValue={propertyWithAgent[0].description} />
+      <div className="grid md:grid-cols-3 gap-4">
+        <LocationInput
+          defaultProvinceValue={propertyWithAgent[0].province}
+          defaultRegencyValue={propertyWithAgent[0].regency}
+        />
+        <StreetInput defaultValue={propertyWithAgent[0].street} />
+      </div>
+    </div>
+  );
+};
+
+const PriceForm = ({ propertyWithAgent }: EditPropertyFormProps) => {
+  const [isRent, setIsRent] = useState(
+    propertyWithAgent[0].purchase_status !== PurchaseStatus.ForSale,
+  );
+  const [currency, setCurrency] = useState(CurrencyUnit.IDR);
+  return (
+    <div className="grid gap-4 md:flex md:flex-col">
+      <h3 className="text-lg">PRICE</h3>
+      <div className="grid grid-cols-2 gap-4">
+        <PurchaseStatusSelect
+          defaultValue={propertyWithAgent[0].purchase_status}
+          onValueChange={(val) => setIsRent(val !== PurchaseStatus.ForSale)}
+        />
+        <RentTimeSelect
+          disabled={!isRent}
+          defaultValue={propertyWithAgent[0].rent_time}
+        />
+        <PriceInput
+          currency={currency}
+          defaultValue={propertyWithAgent[0].price}
+        />
+        <CurrencySelect
+          onValueChange={setCurrency}
+          defaultValue={propertyWithAgent[0].currency}
+        />
+      </div>
+    </div>
+  );
+};
+
+const DetailForm = ({ propertyWithAgent, userRole }: EditPropertyFormProps) => {
+  return (
+    <div className="grid gap-4 md:flex md:flex-col">
+      <h3 className="text-lg">PROPERTY DETAILS</h3>
+      <div className="grid grid-cols-2 gap-4">
+        <BuildingTypeSelect defaultValue={propertyWithAgent[0].building_type} />
+        <BuildingConditionSelect
+          defaultValue={propertyWithAgent[0].building_condition}
+        />
+        <BuildingCertificateSelect
+          defaultValue={propertyWithAgent[0].building_certificate}
+        />
+        <BuildingFurnitureSelect
+          defaultValue={
+            propertyWithAgent[0].building_furniture_capacity ?? undefined
+          }
+        />
+        <SoldStatusSelect defaultValue={propertyWithAgent[0].sold_status} />
+        {userRole === AgentRole.Admin && (
+          <SoldChannelSelect
+            defaultValue={propertyWithAgent[0].sold_channel ?? undefined}
+          />
+        )}
+      </div>
+    </div>
+  );
 };
 
 export const EditPropertyForm = ({
@@ -111,58 +190,20 @@ export const EditPropertyForm = ({
   };
 
   return (
-    <form className="grid gap-2 max-w-7xl" action={handleAction}>
-      <div className="grid gap-4 md:flex md:gap-8 md:items-start">
-        <div className="grid gap-4 md:max-w-sm">
-          <TitleInput defaultValue={propertyWithAgent[0].title} />
-          <DescriptionInput defaultValue={propertyWithAgent[0].description} />
-          <div className="grid gap-4">
-            <LocationInput
-              defaultProvinceValue={propertyWithAgent[0].province}
-              defaultRegencyValue={propertyWithAgent[0].regency}
-            />
-            <StreetInput defaultValue={propertyWithAgent[0].street} />
-          </div>
-          <GmapIframeInput defaultValue={propertyWithAgent[0].gmap_iframe} />
+    <form className="grid gap-4 container mx-auto" action={handleAction}>
+      <div className="grid gap-8 md:grid-cols-2">
+        <SeoForm propertyWithAgent={propertyWithAgent} />
+        <PriceForm propertyWithAgent={propertyWithAgent} />
+        <Measurements propertyWithAgent={propertyWithAgent} />
+        <DetailForm userRole={userRole} propertyWithAgent={propertyWithAgent} />
+        <div className="md:order-last">
+          <ImagesUpload />
         </div>
-        <div className="grid gap-2">
-          <div className="grid gap-4 md:gap-8">
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-              <PurchaseStatusSelect
-                defaultValue={propertyWithAgent[0].purchase_status}
-              />
-              <BuildingCertificateSelect
-                defaultValue={propertyWithAgent[0].building_certificate}
-              />
-              <PriceInput defaultValue={propertyWithAgent[0].price} />
-              <SoldStatusSelect
-                defaultValue={propertyWithAgent[0].sold_status}
-              />
-              <BuildingTypeSelect
-                defaultValue={propertyWithAgent[0].building_type}
-              />
-              <BuildingConditionSelect
-                defaultValue={propertyWithAgent[0].building_condition}
-              />
-              <BuildingFurnitureSelect
-                defaultValue={
-                  propertyWithAgent[0].building_furniture_capacity ?? undefined
-                }
-              />
-              {userRole === AgentRole.Admin && (
-                <SoldChannelSelect
-                  defaultValue={propertyWithAgent[0].sold_channel ?? undefined}
-                />
-              )}
-            </div>
-            <div className="grid gap-4">
-              <Measurements propertyWithAgent={propertyWithAgent} />
-              <Specifications propertyWithAgent={propertyWithAgent} />
-            </div>
-            <div className="grid gap-4">
-              <FacilitiesSelect />
-              <ImagesUpload />
-            </div>
+        <div className="grid gap-4">
+          <h3 className="text-lg">ADDITIONAL DETAILS</h3>
+          <div className="grid gap-4">
+            <FacilitiesSelect />
+            <GmapIframeInput defaultValue={propertyWithAgent[0].gmap_iframe} />
           </div>
         </div>
       </div>
