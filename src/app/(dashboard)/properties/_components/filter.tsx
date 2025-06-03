@@ -22,15 +22,15 @@ export const PropertyFilter = ({ searchParams }: PropertyFilterProps) => {
 
   const onProvinceChange = (bpsDomain: BpsDomain | undefined) => {
     const newParams = new URLSearchParams(searchParams);
-    setProvinceId(bpsDomain?.domain_id || "");
-    newParams.set("province", bpsDomain?.domain_name.toLowerCase() || "");
+    setProvinceId(bpsDomain?.id || "");
+    newParams.set("province", bpsDomain?.nama.toLowerCase() || "");
     newParams.set("page", "1");
     router.replace(`/properties?${newParams.toString()}`);
   };
 
   const onRegencyChange = (bpsDomain: BpsDomain | undefined) => {
     const newParams = new URLSearchParams(searchParams);
-    newParams.set("regency", bpsDomain?.domain_name?.toLowerCase() || "");
+    newParams.set("regency", bpsDomain?.nama?.toLowerCase() || "");
     newParams.set("page", "1");
     router.replace(`/properties?${newParams.toString()}`);
   };
