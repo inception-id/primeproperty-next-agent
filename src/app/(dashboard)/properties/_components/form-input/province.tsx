@@ -26,7 +26,7 @@ export const ProvinceSelect = ({
   useEffect(() => {
     if (defaultValue) {
       const selectedProvince = PROVINCES.find(
-        (prov) => prov.domain_name.toLowerCase() === defaultValue,
+        (prov) => prov.nama.toLowerCase() === defaultValue,
       );
       onProvinceChange(selectedProvince);
     }
@@ -45,22 +45,23 @@ export const ProvinceSelect = ({
         defaultValue={defaultValue}
         onValueChange={(val) => {
           const selectedProvince = PROVINCES?.find(
-            (prov) => prov.domain_name.toLowerCase() === val,
+            (prov) => prov.nama.toLowerCase() === val,
           );
           onProvinceChange(selectedProvince);
         }}
       >
         <SelectTrigger>
-          <SelectValue placeholder="Pilih provinsi" />
+          <SelectValue placeholder="Pilih provinsi" className="capitalize" />
         </SelectTrigger>
         <SelectContent>
           {isFilter && <SelectItem value="-">Semua Provinsi</SelectItem>}
           {PROVINCES?.map((province, index) => (
             <SelectItem
-              key={`${index}_${province.domain_id}`}
-              value={province.domain_name.toLowerCase()}
+              key={`${index}_${province.id}`}
+              value={province.nama.toLowerCase()}
+              className="capitalize"
             >
-              {province.domain_name}
+              {province.nama.toLowerCase()}
             </SelectItem>
           ))}
         </SelectContent>

@@ -6,8 +6,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useProvinceRegency } from "@/hooks/bps/use-province-regency";
 import { BpsDomain } from "@/lib/bps/find-bps-domain-province";
+import { REGENCIES } from "@/lib/enums/regency";
+import { useMemo } from "react";
 import { FaStarOfLife } from "react-icons/fa";
 
 type ProvinceRegencyProps = {
@@ -23,7 +24,12 @@ export const ProvinceRegencySelect = ({
   onValueChange,
   defaultValue,
 }: ProvinceRegencyProps) => {
-  const { isLoading, data } = useProvinceRegency(provinceId);
+  const PROVINCE_REGENCY: BpsDomain[] = useMemo(() => {
+    if (provinceId) {
+      return REGENCIES[provinceId as unknown as keyof typeof REGENCIES];
+    }
+    return [];
+  }, [provinceId]);
 
   return (
     <div className="grid gap-2 md:flex md:flex-col">
@@ -36,8 +42,8 @@ export const ProvinceRegencySelect = ({
         defaultValue={defaultValue}
         onValueChange={(value) => {
           if (onValueChange) {
-            const selectedRegency = data?.find(
-              (regency) => regency.domain_name.toLowerCase() === value,
+            const selectedRegency = PROVINCE_REGENCY?.find(
+              (regency) => regency.nama.toLowerCase() === value,
             );
             onValueChange(selectedRegency);
           }
@@ -45,23 +51,21 @@ export const ProvinceRegencySelect = ({
       >
         <SelectTrigger disabled={provinceId === ""}>
           <SelectValue
+            className="capitalize"
             placeholder={provinceId ? "Pilih kabupaten" : "Pilih provinsi dulu"}
           />
         </SelectTrigger>
         <SelectContent>
           {isFilter && <SelectItem value="-">Semua Kabupaten</SelectItem>}
-          {isLoading ? (
-            <div className="text-sm p-2">Loading...</div>
-          ) : (
-            data?.map((regency, index) => (
-              <SelectItem
-                key={`${index}-${regency.domain_id}-${regency.domain_name}`}
-                value={regency.domain_name.toLowerCase()}
-              >
-                {regency.domain_name}
-              </SelectItem>
-            ))
-          )}
+          {PROVINCE_REGENCY?.map((regency, index) => (
+            <SelectItem
+              key={`${index}-${regency.id}-${regency.nama}`}
+              value={regency.nama.toLowerCase()}
+              className="capitalize"
+            >
+              {regency.nama.toLowerCase()}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
     </div>

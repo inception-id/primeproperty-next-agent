@@ -17,9 +17,7 @@ export const LocationInput = ({
     <div className="grid grid-cols-2 gap-4 md:col-span-2">
       <ProvinceSelect
         defaultValue={defaultProvinceValue}
-        onProvinceChange={(bpsDomain) =>
-          setProvinceId(bpsDomain?.domain_id || "")
-        }
+        onProvinceChange={(bpsDomain) => setProvinceId(bpsDomain?.id || "")}
       />
       <ProvinceRegencySelect
         provinceId={provinceId}
