@@ -119,7 +119,7 @@ export const getTableColumns = (
     cell: ({ row }) => {
       const whatsappUrl = "https://api.whatsapp.com/send?text=";
       const text = `
-        *${row.original[0].title}*\nLokasi: ${row.original[0].street},${row.original[0].regency}\n${row.original[0].description}\n\nContact:\n${row.original[4] ? `https://instagram.com/${row.original[4]}` : ""}\nwa.me/62${row.original[2]}\n`;
+        *${row.original[0].title}*\nLokasi: ${row.original[0].street},${row.original[0].regency}\n${row.original[0].description}\n\nContact:\n${row.original[4] ? `https://instagram.com/${row.original[4]}` : ""}\nWhatsapp:\nwa.me/62${row.original[2]}\nLink:\n${env.NEXT_PUBLIC_CLIENT_URL}/properties/${row.original[0].id}`;
       return (
         <div className="flex flex-col gap-1 justify-start">
           <div className="flex gap-1 items-center">
