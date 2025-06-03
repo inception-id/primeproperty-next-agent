@@ -6,6 +6,7 @@ type UpdateAgentPayload = {
   fullname: string;
   phone_number: string;
   profile_picture_url?: string | null;
+  instagram?: string | null;
 };
 
 export const updateAgent = async (

@@ -11,7 +11,13 @@ export type FindPropertyQuery = {
   sold_status?: SoldStatus;
 };
 
-export type PropertyWithAgent = [Property, string, string, string | null];
+export type PropertyWithAgent = [
+  Property,
+  string,
+  string,
+  string | null,
+  string | null,
+];
 
 export const findProperties = async (query?: FindPropertyQuery) => {
   let path = "/properties?";

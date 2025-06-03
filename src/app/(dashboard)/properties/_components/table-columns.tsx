@@ -12,6 +12,7 @@ import { DeleteDialog } from "./delete-dialog";
 import { formatToCurrencyUnit } from "@/lib/format-to-currency-unit";
 import { PurchaseStatus } from "@/lib/enums/purchase-status";
 import { RENT_TIME } from "@/lib/enums/rent-time";
+import { MdWhatsapp } from "react-icons/md";
 
 export const getTableColumns = (
   role?: AgentRole,
@@ -116,15 +117,31 @@ export const getTableColumns = (
     header: "",
     accessorKey: "action",
     cell: ({ row }) => {
+      const whatsappUrl = "https://api.whatsapp.com/send?text=";
+      const text = `
+        *${row.original[0].title}*\nLokasi: ${row.original[0].street},${row.original[0].regency}\n${row.original[0].description}\n\nContact:\n${row.original[4] ? `https://instagram.com/${row.original[4]}` : ""}\nwa.me/62${row.original[2]}\n`;
       return (
-        <div className="flex flex-col gap-1 items-center md:flex-row">
+        <div className="flex flex-col gap-1 justify-start">
+          <div className="flex gap-1 items-center">
+            <Link
+              href={`/properties/${row.original[0].id}`}
+              className={cn(buttonVariants({ size: "icon" }))}
+            >
+              <LuPencil />
+            </Link>
+            <DeleteDialog property={row.original[0]} role={role} />
+          </div>
           <Link
-            href={`/properties/${row.original[0].id}`}
-            className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+            href={encodeURI(whatsappUrl + text)}
+            target="_blank"
+            className={cn(
+              buttonVariants({ size: "sm" }),
+              "bg-green-500 hover:bg-green-400",
+            )}
           >
-            <LuPencil />
+            <MdWhatsapp />
+            Share
           </Link>
-          <DeleteDialog property={row.original[0]} role={role} />
         </div>
       );
     },
