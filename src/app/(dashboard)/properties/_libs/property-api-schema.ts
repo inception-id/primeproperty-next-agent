@@ -1,7 +1,10 @@
 import { z } from "zod";
 
 export const PropertyApiSchema = z.object({
-  title: z.string().min(1, "Judul tidak boleh kosong"),
+  title: z
+    .string()
+    .min(1, "Judul tidak boleh kosong")
+    .max(55, "Maximum Judul 55 karakter"),
   description: z.string().min(1, "Deskripsi tidak boleh kosong"),
   province: z.string().min(1, "Provinsi tidak boleh kosong"),
   regency: z.string().min(1, "Kabupaten tidak boleh kosong"),
