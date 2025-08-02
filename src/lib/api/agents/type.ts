@@ -14,4 +14,5 @@ export type Agent = {
   profile_picture_url: null | string;
   role: AgentRole;
   instagram: null | string;
+  description: string | null;
 };
