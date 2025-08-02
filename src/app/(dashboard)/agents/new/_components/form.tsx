@@ -152,7 +152,7 @@ export const NewAgentForm = () => {
 
       <div className="flex items-center justify-between">
         <Link
-          href="/agent/list"
+          href="/agents"
           className={cn(buttonVariants({ variant: "outline" }))}
         >
           <LuChevronLeft />

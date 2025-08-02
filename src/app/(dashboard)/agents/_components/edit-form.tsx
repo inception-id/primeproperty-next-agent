@@ -33,6 +33,7 @@ export const EditForm = ({ row, closeDialog }: EditFormProps) => {
     const phoneNumber = formData.get("phone_number") as string;
     const profilePicture = formData.get("profile_picture") as File;
     const instagram = formData.get("instagram") as string;
+    const description = formData.get("description") as string;
 
     const zodSchema = z.object({
       fullname: z
@@ -69,6 +70,7 @@ export const EditForm = ({ row, closeDialog }: EditFormProps) => {
         phone_number: phoneNumber,
         profile_picture_url: profilePicturePath,
         instagram,
+        description,
       });
       if (agent.status !== 200) {
         toast.error("Server error, please try again later");
@@ -126,6 +128,15 @@ export const EditForm = ({ row, closeDialog }: EditFormProps) => {
           type="text"
           name="instagram"
           defaultValue={row.original.instagram ?? ""}
+        />
+      </div>
+      <div className="grid gap-2">
+        <Label htmlFor="description">Description</Label>
+        <Input
+          id="description"
+          type="text"
+          name="description"
+          defaultValue={row.original.description ?? ""}
         />
       </div>
 

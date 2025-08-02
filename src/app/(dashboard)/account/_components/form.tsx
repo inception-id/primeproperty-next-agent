@@ -32,6 +32,7 @@ export const EditForm = ({ agent }: EditFormProps) => {
     const phoneNumber = formData.get("phone_number") as string;
     const profilePicture = formData.get("profile_picture") as File;
     const instagram = formData.get("instagram") as string;
+    const description = formData.get("description") as string;
 
     const zodSchema = z.object({
       fullname: z
@@ -68,6 +69,7 @@ export const EditForm = ({ agent }: EditFormProps) => {
         phone_number: phoneNumber,
         profile_picture_url: profilePicturePath,
         instagram,
+        description,
       });
       if (updatedAgent.status !== 200) {
         toast.error("Server error, refresh or try again later");
@@ -124,6 +126,15 @@ export const EditForm = ({ agent }: EditFormProps) => {
           type="text"
           name="instagram"
           defaultValue={agent.instagram ?? ""}
+        />
+      </div>
+      <div className="grid gap-2">
+        <Label htmlFor="description">Description</Label>
+        <Input
+          id="description"
+          type="text"
+          name="description"
+          defaultValue={agent.description ?? ""}
         />
       </div>
 
