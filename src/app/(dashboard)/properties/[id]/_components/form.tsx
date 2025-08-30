@@ -38,6 +38,8 @@ import { useState } from "react";
 import { CurrencyUnit } from "@/lib/api/properties/type";
 import { PurchaseStatus } from "@/lib/enums/purchase-status";
 import { RentTimeSelect } from "../../_components/form-input/rent-time-select";
+import { DescriptionSeoInput } from "../../_components/form-input/description-seo";
+import { PriceDownPaymentInput } from "../../_components/form-input/price-down-payment";
 
 type EditPropertyFormProps = {
   userRole?: AgentRole;
@@ -50,6 +52,9 @@ const SeoForm = ({ propertyWithAgent }: EditPropertyFormProps) => {
       <h3 className="text-lg">SEO</h3>
       <TitleInput defaultValue={propertyWithAgent[0].title} />
       <DescriptionInput defaultValue={propertyWithAgent[0].description} />
+      <DescriptionSeoInput
+        defaultValue={propertyWithAgent[0].description_seo}
+      />
       <div className="grid md:grid-cols-3 gap-4">
         <LocationInput
           defaultProvinceValue={propertyWithAgent[0].province}
@@ -81,6 +86,10 @@ const PriceForm = ({ propertyWithAgent }: EditPropertyFormProps) => {
         <PriceInput
           currency={currency}
           defaultValue={propertyWithAgent[0].price}
+        />
+        <PriceDownPaymentInput
+          currency={currency}
+          defaultValue={propertyWithAgent[0].price_down_payment}
         />
         <CurrencySelect
           onValueChange={setCurrency}

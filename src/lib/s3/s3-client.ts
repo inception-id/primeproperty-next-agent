@@ -2,7 +2,7 @@ import { S3Client } from "@aws-sdk/client-s3";
 import { env } from "@/lib/env";
 
 export const S3_AGENT_BUCKET = "primepro-agents-2";
-export const S3_PROPERTY_BUCKET = "primepro-property-2";
+export const S3_PROPERTY_BUCKET = "primepro-property-3";
 export const s3client = new S3Client({
   region: "idn",
   endpoint: env.NEXT_PUBLIC_S3_ENDPOINT,

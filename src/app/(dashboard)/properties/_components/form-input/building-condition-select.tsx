@@ -7,6 +7,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { BUILDING_CONDITIONS } from "@/lib/enums/building-condition";
+import { FaStarOfLife } from "react-icons/fa";
 
 type BuildingConditionSelectProps = {
   defaultValue?: string;
@@ -17,9 +18,9 @@ export const BuildingConditionSelect = ({
 }: BuildingConditionSelectProps) => {
   return (
     <div className="grid gap-2">
-      <Label htmlFor="building_condition">
+      <Label htmlFor="building_condition" className="flex gap-1">
         Kondisi Properti
-        <span className="text-red-500 ml-1">(*)</span>
+        <FaStarOfLife size={6} className="text-red-500" />
       </Label>
       <Select name="building_condition" defaultValue={defaultValue}>
         <SelectTrigger className="capitalize">

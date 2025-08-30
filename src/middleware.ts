@@ -15,8 +15,12 @@ export async function middleware(request: NextRequest) {
       const refreshToken = request.cookies.get("refreshToken")?.value as string;
       const newSession = await refreshSupertokensSession(refreshToken);
       if (newSession.status === "OK") {
-        response.cookies.set("accessToken", newSession.accessToken.token);
-        response.cookies.set("refreshToken", newSession.refreshToken.token);
+        response.cookies.set("accessToken", newSession.accessToken.token, {
+          maxAge: 60 * 60 * 24,
+        }); // 1 day
+        response.cookies.set("refreshToken", newSession.refreshToken.token, {
+          maxAge: 60 * 60 * 24,
+        });
       } else {
         response.cookies.delete("accessToken");
         response.cookies.delete("refreshToken");

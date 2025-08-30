@@ -35,6 +35,8 @@ import { RentTimeSelect } from "../../_components/form-input/rent-time-select";
 import { useState } from "react";
 import { PurchaseStatus } from "@/lib/enums/purchase-status";
 import { CurrencyUnit } from "@/lib/api/properties/type";
+import { DescriptionSeoInput } from "../../_components/form-input/description-seo";
+import { PriceDownPaymentInput } from "../../_components/form-input/price-down-payment";
 
 const SeoForm = () => {
   return (
@@ -42,6 +44,7 @@ const SeoForm = () => {
       <h3 className="text-lg">SEO</h3>
       <TitleInput />
       <DescriptionInput />
+      <DescriptionSeoInput />
       <div className="grid md:grid-cols-3 gap-4">
         <LocationInput />
         <StreetInput />
@@ -62,6 +65,7 @@ const PriceForm = () => {
         />
         <RentTimeSelect disabled={!isRent} />
         <PriceInput currency={currency} />
+        <PriceDownPaymentInput currency={currency} />
         <CurrencySelect onValueChange={setCurrency} />
       </div>
     </div>

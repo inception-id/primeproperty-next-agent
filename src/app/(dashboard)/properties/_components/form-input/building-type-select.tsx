@@ -7,6 +7,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { BUILDING_TYPES } from "@/lib/enums/building-type";
+import { FaStarOfLife } from "react-icons/fa";
 
 type BuildingTypeSelectProps = {
   defaultValue?: string;
@@ -17,9 +18,9 @@ export const BuildingTypeSelect = ({
 }: BuildingTypeSelectProps) => {
   return (
     <div className="grid gap-2">
-      <Label htmlFor="building_type">
+      <Label htmlFor="building_type" className="flex gap-1">
         Tipe Properti
-        <span className="text-red-500 ml-1">(*)</span>
+        <FaStarOfLife size={6} className="text-red-500" />
       </Label>
       <Select name="building_type" defaultValue={defaultValue}>
         <SelectTrigger className="capitalize">
