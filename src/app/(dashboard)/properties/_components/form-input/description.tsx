@@ -10,12 +10,12 @@ export const DescriptionInput = ({ defaultValue }: DescriptionInputProps) => {
   return (
     <div className="grid gap-2 w-full">
       <Label htmlFor="description" className="flex gap-1">
-        Deskripsi
+        Deskripsi Properti
         <FaStarOfLife size={6} className="text-red-500" />
       </Label>
       <Textarea
         id="description"
-        placeholder="Dijual rumah bertabur bintang beratapkan langit dan awan."
+        placeholder="Tulis deskripsi properti yang mendetil di sini."
         name="description"
         required
         className="resize-none"

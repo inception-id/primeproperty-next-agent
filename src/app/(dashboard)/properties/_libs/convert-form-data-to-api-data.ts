@@ -27,6 +27,8 @@ export type PropertyFormData = {
   sold_channel?: string;
   currency: CurrencyUnit;
   rent_time?: string;
+  description_seo?: string;
+  price_down_payment?: string;
 };
 
 export const converPropertyFormDataToApiData = (
@@ -64,5 +66,11 @@ export const converPropertyFormDataToApiData = (
       ? (formData.sold_channel as SoldChannel)
       : undefined,
     rent_time: formData.rent_time ? formData.rent_time : undefined,
+    description_seo: formData.description_seo
+      ? formData.description_seo
+      : undefined,
+    price_down_payment: formData.price_down_payment
+      ? parseInt(formData.price_down_payment)
+      : 0,
   };
 };

@@ -30,6 +30,8 @@ export type CreateUpdatePropertyPayload = {
   sold_channel?: SoldChannel | null;
   currency: CurrencyUnit;
   rent_time?: string | null;
+  description_seo?: string | null;
+  price_down_payment?: number | null;
 };
 
 export const createProperty = async (payload: CreateUpdatePropertyPayload) => {
