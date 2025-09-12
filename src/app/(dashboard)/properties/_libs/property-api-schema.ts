@@ -6,7 +6,10 @@ export const PropertyApiSchema = z.object({
     .min(1, "Judul tidak boleh kosong")
     .max(55, "Judul Maksimum 55 karakter"),
   description: z.string().min(1, "Deskripsi Properti tidak boleh kosong"),
-  description_seo: z.string().max(160, "Deskripsi SEO Maksimum 160 karakter"),
+  description_seo: z
+    .string()
+    .max(160, "Deskripsi SEO Maksimum 160 karakter")
+    .optional(),
   province: z.string().min(1, "Provinsi tidak boleh kosong"),
   regency: z.string().min(1, "Kabupaten tidak boleh kosong"),
   street: z.string(),
