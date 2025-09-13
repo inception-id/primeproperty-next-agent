@@ -50,7 +50,7 @@ export const ProvinceSelect = ({
           onProvinceChange(selectedProvince);
         }}
       >
-        <SelectTrigger>
+        <SelectTrigger id="province">
           <SelectValue placeholder="Pilih provinsi" className="capitalize" />
         </SelectTrigger>
         <SelectContent>

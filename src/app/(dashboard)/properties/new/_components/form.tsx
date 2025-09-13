@@ -45,7 +45,7 @@ const SeoForm = () => {
       <TitleInput />
       <DescriptionInput />
       <DescriptionSeoInput />
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-3 gap-6 md:gap-4">
         <LocationInput />
         <StreetInput />
       </div>

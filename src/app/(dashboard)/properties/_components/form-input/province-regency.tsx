@@ -49,7 +49,7 @@ export const ProvinceRegencySelect = ({
           }
         }}
       >
-        <SelectTrigger disabled={provinceId === ""}>
+        <SelectTrigger id="regency" disabled={provinceId === ""}>
           <SelectValue
             className="capitalize"
             placeholder={provinceId ? "Pilih kabupaten" : "Pilih provinsi dulu"}
