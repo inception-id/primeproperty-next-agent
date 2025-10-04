@@ -13,7 +13,7 @@ type PropertiesTableProps = {
 
 export const PropertiesTable = ({ searchParams }: PropertiesTableProps) => {
   const agent = useAgentTokenData();
-  const property = useProperties(searchParams);
+  const property = useProperties({ limit: String(30), ...searchParams });
 
   const table = useReactTable({
     data: property.data?.data?.data ?? [],

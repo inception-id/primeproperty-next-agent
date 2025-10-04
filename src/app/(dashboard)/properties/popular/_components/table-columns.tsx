@@ -75,7 +75,7 @@ export const getTableColumns = (
       header: "Agent",
       accessorKey: "agent",
       cell: ({ row }) => {
-        const picturePath = row.original[3];
+        const picturePath = row.original[1].profile_picture_url;
         const profilePicUrl = s3Endpoint + picturePath;
         return (
           <div className="flex gap-2 items-center">
@@ -93,8 +93,10 @@ export const getTableColumns = (
               )}
             </div>
             <div className="flex flex-col text-xs">
-              <span className="text-muted-foreground">{row.original[1]}</span>
-              <span>0{row.original[2]}</span>
+              <span className="text-muted-foreground">
+                {row.original[1].fullname}
+              </span>
+              <span>0{row.original[1].phone_number}</span>
             </div>
           </div>
         );
