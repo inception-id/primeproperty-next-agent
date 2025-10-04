@@ -10,6 +10,7 @@ export type FindPropertyQuery = {
   page?: string;
   is_popular?: string;
   sold_status?: SoldStatus;
+  limit?: string;
 };
 
 export type PropertyWithAgent = [Property, Agent];
@@ -24,6 +25,9 @@ export const findProperties = async (query?: FindPropertyQuery) => {
   }
   if (query?.regency) {
     path += `&regency=${query.regency}`;
+  }
+  if (query?.limit) {
+    path += `&limit=${query.limit}`;
   }
   if (query?.page) {
     path += `&page=${query.page}`;
