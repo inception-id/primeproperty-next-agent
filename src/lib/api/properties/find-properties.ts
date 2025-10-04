@@ -1,3 +1,4 @@
+import { Agent } from "../agents/type";
 import { fetchApi } from "../fetch-api";
 import { JsonFindApiResponse } from "../types/find-response";
 import { Property, SoldStatus } from "./type";
@@ -11,13 +12,7 @@ export type FindPropertyQuery = {
   sold_status?: SoldStatus;
 };
 
-export type PropertyWithAgent = [
-  Property,
-  string,
-  string,
-  string | null,
-  string | null,
-];
+export type PropertyWithAgent = [Property, Agent];
 
 export const findProperties = async (query?: FindPropertyQuery) => {
   let path = "/properties?";

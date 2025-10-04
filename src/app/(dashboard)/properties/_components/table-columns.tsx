@@ -86,7 +86,7 @@ export const getTableColumns = (
       header: "Agent",
       accessorKey: "agent",
       cell: ({ row }) => {
-        const picturePath = row.original[3];
+        const picturePath = row.original[1].profile_picture_url;
         const profilePicUrl = s3Endpoint + picturePath;
         return (
           <div className="flex gap-2 items-center">
@@ -104,8 +104,10 @@ export const getTableColumns = (
               )}
             </div>
             <div className="flex flex-col text-xs">
-              <span className="text-muted-foreground">{row.original[1]}</span>
-              <span>0{row.original[2]}</span>
+              <span className="text-muted-foreground">
+                {row.original[1].fullname}
+              </span>
+              <span>0{row.original[1].phone_number}</span>
             </div>
           </div>
         );
@@ -119,7 +121,7 @@ export const getTableColumns = (
     cell: ({ row }) => {
       const whatsappUrl = "https://api.whatsapp.com/send?text=";
       const text = `
-        *${row.original[0].title}*\nLokasi: ${row.original[0].street},${row.original[0].regency}\n${row.original[0].description}\n\nContact:\n${row.original[4] ? `https://instagram.com/${row.original[4]}` : ""}\nWhatsapp:\nwa.me/62${row.original[2]}\nLink:\n${env.NEXT_PUBLIC_CLIENT_URL}/properties/${row.original[0].id}`;
+        *${row.original[0].title}*\nLokasi: ${row.original[0].street},${row.original[0].regency}\n${row.original[0].description}\n\nContact:\n${row.original[1].instagram ? `https://instagram.com/${row.original[1].instagram}` : ""}\nWhatsapp:\nwa.me/62${row.original[1].phone_number}\nLink:\n${env.NEXT_PUBLIC_CLIENT_URL}/properties/${row.original[0].id}`;
       return (
         <div className="flex flex-col gap-1 justify-start">
           <div className="flex gap-1 items-center">
